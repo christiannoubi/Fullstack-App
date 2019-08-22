@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+.container {
+  padding-top: 100px;
+}
+.card {
+  height: 100%;
+}
+
+.card-body {
+  background-color: #dedade;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://mein-webfont-server/lato.woff2) format("woff2");
+}
+
+
+.section {
+  padding-bottom: 20px;
+
+}
+
+.footer {
+  color: #d2d2d6;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding: 128px 0;
+  background: #20313b;
+  position: relative;
+  z-index: 20;
+}
+
+.Header {
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  background: #20313b;
+}
+
+.Header-nav {
+  transition: 0.2s, 0.2s;
+
+  flex-grow: 1;
+  max-width: calc(100% - 20px);
+  padding-left: 51px;
+  position: relative;
+}
+
+.PrimaryNav {
+  display: flex;
+  font-weight: 500;
+}
+
+.card-header {
+  background: #20313b;
+  z-index: 100;
+  font-weight: 500;
+}
+
+.card-footer {
+  background: #20313b;
+  z-index: 100;
+  font-weight: 500;
+}
+

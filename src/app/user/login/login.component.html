@@ -1,0 +1,79 @@
+<div class="container justify-content-center">
+  <div class="card ">
+    <div class="card-header text-light">
+      {{pageTitle}}
+    </div>
+
+    <div class="card-body">
+      <form novalidate
+            [formGroup]="loginForm" (ngSubmit)="login()">
+        <fieldset>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="usernameId"> Username</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="usernameId"
+                     type="text"
+                     placeholder="username (required)"
+                     formControlName="username"
+                     [ngClass]="{'is-invalid': (loginForm.get('username').touched ||
+                                              loginForm.get('username').dirty ) &&
+                                             !loginForm.get('username').valid }" />
+              <span class="invalid-feedback">
+            <span *ngIf="loginForm.get('username').errors?.required">
+               username is required.
+            </span>
+          </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="passwordId">Password</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="passwordId"
+                     type="password"
+                     placeholder="Password (required)"
+                     formControlName="password"
+                     [ngClass]="{'is-invalid': (loginForm.get('password').touched ||
+                                              loginForm.get('password').dirty)   &&
+                                             !loginForm.get('password').valid }" />
+              <span class="invalid-feedback">
+            <span *ngIf="loginForm.get('password').errors?.required">
+             password is required.
+            </span>
+            <span *ngIf="loginForm.get('password').errors?.minlength">
+             password must be at greater than 8 characters.
+            </span>
+              <span *ngIf="loginForm.get('password').errors?.maxlength">
+             password must be at least than 10 characters.
+            </span>
+          </span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-dark mr-2 mr-md-3 mr-lg-4 mr-kf-5"
+              type="submit"
+              style="width:80px"
+              (click)="login()"
+              [disabled]="loginForm.invalid">
+        Log In
+      </button>
+      <button class="btn btn-outline-secondary"
+              type="button"
+              (click)="registration()"
+              style="width:120px">
+        Registration
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="alert alert-danger"
+     *ngIf="errorMessage">{{errorMessage}}
+</div>

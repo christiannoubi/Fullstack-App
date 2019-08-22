@@ -1,0 +1,148 @@
+<header class="Header is fixed">
+  <div class="Wrap">
+    <nav class="Header-nav PrimaryNav " routerLink="/home">
+      <div class="navbar">
+        <a routerLink="/home" class="btn btn-outline-secondary mr-2 mr-md-3 mr-lg-4 mr-kf-5">
+          Home
+        </a>
+        <a routerLink="/employee"
+           routerLinkActive="active" class="btn btn-outline-success mr-2 mr-md-3 mr-lg-4 mr-kf-5">
+          Employee
+        </a>
+        <a (click)="logout()"
+           routerLinkActive="active" class="btn btn-outline-danger  ">
+          log out
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+
+
+<div class="navbar ">
+
+</div>
+<section class="bg-dark text-light">
+  <div class="container h-100">
+    <div class="row pt-5 pb-5 h-100">
+      <div class="col-12 col-md-6 align-self-center">
+        <h1>Welcome home</h1>
+        <p>Dum haec in oriente aguntur, Arelate hiemem agens Constantius post theatralis ludos atque circenses ambitioso
+          editos apparatu diem sextum idus Octobres, qui imperii eius</p>
+      </div>
+
+      <div class="col">
+        <img src="https://placeimg.com/640/480/any" class="w-100 rounded" alt="placeholder">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container h-100">
+    <div *ngFor="let count of [1, 2, 3, 4, 5]; let idx = index"
+         class="row pt-5 pb-5 h-100">
+      <div class="col-12 col-md-6 align-self-center order-md-{{(idx + 1) % 2}}">
+        <h1>Welcome home</h1>
+        <p>Dum haec in oriente aguntur, Arelate hiemem agens Constantius post theatralis ludos atque circenses ambitioso
+          editos apparatu diem sextum idus Octobres, qui imperii eius</p>
+      </div>
+
+      <div class="col order-md-{{idx % 2}}">
+        <img src="https://placeimg.com/640/480/any" class="w-100 rounded" alt="placeholder">
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="footer text-black-50 teal text-black-50">
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Adorsys</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Adorsys</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Software Developer</h5>
+
+        <ul class="list-unstyled">
+          <li>
+          <a href="#!">Software Developer</a>
+        </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Address</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Fürtherstraße 246a</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mx-auto">
+
+        <!-- Links -->
+        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Contact</h5>
+
+        <ul class="text-black-50 list-unstyled">
+          <li>
+            <a href="#!">00000000</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2019 cno:
+    <a href="https://cno-adorsys.de/"> cno-adorsys.de</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->

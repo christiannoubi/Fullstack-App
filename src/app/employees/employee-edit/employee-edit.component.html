@@ -1,0 +1,173 @@
+<div class="container justify-content-center">
+  <div class="card">
+    <div class="card-header text-light">{{ pageTitle }}</div>
+    <div class="card-body">
+      <form novalidate
+            [formGroup]="employeeForm">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="firstNameId"> Firstname</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="firstNameId"
+                     type="text"
+                     placeholder="firstname (required)"
+                     required
+                     minlength="3"
+                     formControlName="firstName"
+                     [ngClass]="{'is-invalid': (employeeForm.get('firstName').touched ||
+                                            employeeForm.get('firstName').dirty)   &&
+                                            !employeeForm.get('firstName').valid }"/>
+              <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('firstName').errors?.required">
+                the first Name is required.
+            </span>
+            <span *ngIf="employeeForm.get('firstName').errors?.minlength">
+               the first Name must be at least three characters.
+            </span>
+            <span *ngIf="employeeForm.get('firstName').errors?.maxlength">
+               the first Name must be at least three characters.
+            </span>
+          </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="lastNameId"> Lastname</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="lastNameId"
+                     type="text"
+                     maxlength="15"
+                     placeholder="lastname (required)"
+                     required
+                     formControlName="lastName"
+                     [ngClass]="{'is-invalid': (employeeForm.get('lastName').touched ||
+                                            employeeForm.get('lastName').dirty ) &&
+                                            !employeeForm.get('lastName').valid }"/>
+              <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('lastName').errors?.required">
+               last Name is required.
+            </span>
+            <span *ngIf="employeeForm.get('lastName').errors?.minlength">
+               The last Name must be greater than 3 character
+            </span>
+            <span *ngIf="employeeForm.get('lastName').errors?.maxlength">
+              The last Name must be least than 10 character
+            </span>
+          </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="usernameId"> Username</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="usernameId"
+                     minlength="3"
+                     type="text"
+                     maxlength=""
+                     placeholder="username (required)"
+                     formControlName="username"
+                     [ngClass]="{'is-invalid': (employeeForm.get('username').touched ||
+                                            employeeForm.get('username').dirty ) &&
+                                            !employeeForm.get('username').valid }"/>
+              <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('username').errors?.required">
+               username is required.
+            </span>
+            <span *ngIf="employeeForm.get('username').errors?.minlength">
+               The username must be greater than 3 character
+            </span>
+            <span *ngIf="employeeForm.get('username').errors?.maxlength">
+              The username must be least than 10 character
+            </span>
+          </span>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="passwordId"> Password</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="passwordId"
+                     type="password"
+                     placeholder="password (required)"
+                     formControlName="password"
+                     [ngClass]="{'is-invalid': (employeeForm.get('password').touched ||
+                                            employeeForm.get('password').dirty ) &&
+                                            !employeeForm.get('password').valid }"/>
+              <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('password').errors?.required">
+               password is required.
+            </span>
+              <span *ngIf="employeeForm.get('password').errors?.minlength">
+               The password must be greater than 8 character
+            </span>
+            <span *ngIf="employeeForm.get('password').errors?.maxlength">
+              The password must be least than 10 character
+            </span>
+          </span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="emailId">Email</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="emailId"
+                     type="email"
+                     placeholder="Email (required)"
+                     formControlName="email"
+                     [ngClass]="{'is-invalid': (employeeForm.get('email').touched ||
+                                            employeeForm.get('email').dirty) &&
+                                            !employeeForm.get('email').valid }"/>
+              <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('email').errors?.required">
+               email is required.
+            </span>
+          </span>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div>
+    <div class="card-footer">
+
+      <button class="btn btn-outline-secondary mr-2 mr-md-3 mr-lg-4 mr-kf-5"
+              style="width:80px"
+              type="button"
+              title="Cancel your edits"
+              (click)="gotoDetailEmployee()">
+        Cancel
+      </button>
+      <button class="btn btn-outline-warning mr-2 mr-md-3 mr-lg-4 mr-kf-5"
+              style="width:80px"
+              type="button"
+              title="Delete this employee"
+              (click)="deleteEmployee()">
+        Delete
+      </button>
+
+      <button class="btn btn-outline-primary "
+              style="width:80px"
+              type="button"
+              title="Update this employee"
+              [disabled]="employeeForm.invalid"
+              (click)="updateEmployee()">
+        Update
+      </button>
+    </div>
+  </div>
+
+</div>
+<div class="alert alert-danger"
+     *ngIf="errorMessage">{{errorMessage}}
+</div>

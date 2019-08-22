@@ -1,0 +1,203 @@
+<div class="container justify-content-center">
+<div class="card">
+    <div class="card-header text-light">{{ pageTitle }}</div>
+    <div class="card-body">
+      <form novalidate [formGroup]="employeeForm">
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label"
+                 for="firstNameId"> Firstname</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="firstNameId"
+                   type="text"
+                   placeholder="firstname (required)"
+                   required
+                   minlength="3"
+                   maxlength="10"
+                   formControlName="firstName"
+                   [ngClass]="{'is-invalid': (employeeForm.get('firstName').touched ||
+                                            employeeForm.get('firstName').dirty)   &&
+                                            !employeeForm.get('firstName').valid }"/>
+            <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('firstName').errors?.required">
+             firstName is required.
+            </span>
+            <span *ngIf="employeeForm.get('firstName').errors?.minlength">
+                The first name must be great than 3 character
+            </span>
+              <span *ngIf="employeeForm.get('firstName').errors?.maxlength">
+                The first name must be least than 10 character
+            </span>
+          </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label"
+                 for="lastNameId"> Lastname</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="lastNameId"
+                   type="text"
+                   placeholder="lastname (required)"
+                   required
+                   minlength="3"
+                   maxlength="15"
+                   formControlName="lastName"
+                   [ngClass]="{'is-invalid': (employeeForm.get('lastName').touched ||
+                                            employeeForm.get('lastName').dirty ) &&
+                                            !employeeForm.get('lastName').valid }"/>
+            <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('lastName').errors?.required">
+               lastname is required.
+            </span>
+            <span *ngIf="employeeForm.get('lastName').errors?.minlength">
+              The last name must greater than 3 character
+            </span>
+              <span *ngIf="employeeForm.get('lastName').errors?.maxlength">
+              The last name must be less than 15 character
+            </span>
+          </span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label"
+                 for="usernameId"> Username</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="usernameId"
+                   type="text"
+                   placeholder="username (required)"
+                   required
+                   maxlength="15"
+                   formControlName="username"
+                   [ngClass]="{'is-invalid': (employeeForm.get('username').touched ||
+                                            employeeForm.get('username').dirty ) &&
+                                            !employeeForm.get('username').valid }"/>
+            <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('username').errors?.required">
+               username is required.
+            </span>
+              <span *ngIf="employeeForm.get('username').errors?.minlength">
+               The username must be greater than 5 character
+            </span>
+          </span>
+          </div>
+        </div>
+        <div formGroupName="passwordGroup">
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="passwordId"> Password</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="passwordId"
+                     type="password"
+                     placeholder="password (required)"
+                     formControlName="password"
+                     [ngClass]="{'is-invalid': employeeForm.get('passwordGroup').errors ||
+                                             (employeeForm.get('passwordGroup').get('password').touched ||
+                                            employeeForm.get('passwordGroup').get('password').dirty ) &&
+                                            !employeeForm.get('passwordGroup').get('password').valid }"/>
+              <span class="invalid-feedback">
+            <span *ngIf="employeeForm.get('passwordGroup').get('password')?.errors?.required">
+               password is required.
+            </span>
+              <span *ngIf="employeeForm.get('passwordGroup').get('password')?.errors?.minlength">
+               The password must be greater than 8 character
+            </span>
+            <span *ngIf="employeeForm.get('passwordGroup').get('password')?.errors?.maxlength">
+              The password must be least than 10 character
+            </span>
+          </span>
+            </div>
+          </div>
+          <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="confirmPasswordId">Confirm Password</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="confirmPasswordId"
+                     type="password"
+                     placeholder="Confirm Password (required)"
+                     formControlName="confirmPassword"
+                     [ngClass]="{'is-invalid': employeeForm.get('passwordGroup').errors ||
+                                             ((employeeForm.get('passwordGroup.confirmPassword').touched ||
+                                              employeeForm.get('passwordGroup.confirmPassword').dirty) &&
+                                              !employeeForm.get('passwordGroup.confirmPassword').valid) }"/>
+              <span class="invalid-feedback">
+              <span *ngIf="employeeForm.get('passwordGroup.confirmPassword').errors?.required">
+                Please confirm your password address.
+              </span>
+              <span *ngIf="employeeForm.get('passwordGroup').errors?.match">
+                The confirmation does not match the password address.
+              </span>
+            </span>
+            </div>
+          </div>
+        </div>
+        <div formGroupName="emailGroup">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label"
+                     for="emailId">Email</label>
+              <div class="col-md-8">
+                <input class="form-control"
+                       id="emailId"
+                       type="text"
+                       placeholder="Email (required)"
+                       formControlName="email"
+                       [ngClass]="{'is-invalid': emailMessage }" />
+                <span class="invalid-feedback">
+              {{ emailMessage }}
+            </span>
+              </div>
+            </div>
+            <div class="form-group row mb-2">
+              <label class="col-md-2 col-form-label"
+                     for="confirmEmailId">Confirm Email</label>
+              <div class="col-md-8">
+                <input class="form-control"
+                       id="confirmEmailId"
+                       type="email"
+                       placeholder="Confirm Email (required)"
+                       formControlName="confirmEmail"
+                       [ngClass]="{'is-invalid': employeeForm.get('emailGroup').errors ||
+                                             ((employeeForm.get('emailGroup.confirmEmail').touched ||
+                                              employeeForm.get('emailGroup.confirmEmail').dirty) &&
+                                              !employeeForm.get('emailGroup.confirmEmail').valid) }"/>
+                <span class="invalid-feedback">
+              <span *ngIf="employeeForm.get('emailGroup.confirmEmail').errors?.required">
+                Please confirm your email address.
+              </span>
+              <span *ngIf="employeeForm.get('emailGroup').errors?.match">
+                The confirmation does not match the email address.
+              </span>
+            </span>
+              </div>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-outline-secondary mr-2 mr-md-3 mr-lg-4 mr-kf-5"
+              style="width:80px"
+              type="button"
+              title="Cancel to list"
+              (click)="gotoList()">
+        Cancel
+      </button>
+      <button class="btn btn-outline-success mr-2 mr-md-3 mr-lg-4 mr-kf-5"
+              style="width:80px"
+              type="button"
+              title="Save this employee"
+              [disabled]="employeeForm.invalid"
+              (click)="saveEmployee()">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="alert alert-danger"
+     *ngIf="errorMessage">{{errorMessage}}
+</div>
