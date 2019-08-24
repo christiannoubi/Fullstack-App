@@ -6,13 +6,11 @@ import {Observable, of, throwError} from 'rxjs';
 import {Employee} from './employee';
 import {catchError, map, tap} from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class EmployeeService {
    // private employeeUrl = 'api/employees';
-   private employeeUrl = '//localhost:8080/employee';
+   private employeeUrl = '/api/employee';
 
 
   constructor(private http: HttpClient) { }

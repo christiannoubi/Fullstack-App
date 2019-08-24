@@ -47,7 +47,6 @@ export class EmployeeAddComponent implements OnInit {
   originalEmployee: Employee;
   employee: Employee;
   employeeForm: FormGroup;
-  private id: string;
   emailMessage = '';
   passwordMessage = '';
 
@@ -69,7 +68,6 @@ export class EmployeeAddComponent implements OnInit {
               private route: ActivatedRoute,
               private fb: FormBuilder,
               private router: Router) {
-    this.id =  this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
@@ -94,11 +92,6 @@ export class EmployeeAddComponent implements OnInit {
         confirmEmail: ['', Validators.required],
       }, { validator: emailMatcher })
     });
-    this.employeeService.getEmployee(this.id)
-      .subscribe(employeeResp => {
-        this.employee = employeeResp;
-        this.employeeForm.patchValue({...employeeResp});
-      });
     const emailControl = this.employeeForm.get('emailGroup.email');
     emailControl.valueChanges.pipe(
       debounceTime(1000)
@@ -114,21 +107,19 @@ export class EmployeeAddComponent implements OnInit {
   }
 
   saveEmployee(): void {
-    if (this.employee.id === 0) {
-      const controlValue = this.employeeForm.value;
-      console.log('controlValue', controlValue);
-      this.employeeService.createEmployee({
-        firstName: controlValue.firstName,
-        lastName: controlValue.lastName,
-        username: controlValue.username,
-        password: controlValue.passwordGroup.password,
-        email: controlValue.emailGroup.email
-      })
-        .subscribe(
-          () => this.gotoList(`The new ${this.employee.firstName} was saved`),
-          (error: any) => this.errorMessage = <any> error
-        );
-    }
+    const controlValue = this.employeeForm.value;
+    console.log('controlValue', controlValue);
+    this.employeeService.createEmployee({
+      firstName: controlValue.firstName,
+      lastName: controlValue.lastName,
+      username: controlValue.username,
+      password: controlValue.passwordGroup.password,
+      email: controlValue.emailGroup.email
+    })
+      .subscribe(
+        (employee) => this.gotoList(`The new ${employee.firstName} was saved`),
+        (error: any) => this.errorMessage = <any> error
+      );
   }
 
   setMessageEmail(c: AbstractControl): void {

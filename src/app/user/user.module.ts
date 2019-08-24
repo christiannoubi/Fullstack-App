@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {LoginService} from './login/login.service';
 import {LoginComponent} from './login/login.component';
 import {RouterModule} from '@angular/router';
+import {EmployeeAddComponent} from '../employees/employee-add/employee-add.component';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([
-      { path: 'login', component: LoginComponent}
+      { path: 'login', component: LoginComponent},
+      { path: 'registration', component: EmployeeAddComponent}
     ])
   ],
   declarations: [LoginComponent],

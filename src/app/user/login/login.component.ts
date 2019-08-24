@@ -12,7 +12,7 @@ import {first} from 'rxjs/operators';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   pageTitle = 'Log In';
-  returnUrl = 'home';
+
   submitted = false;
   loading = false;
 
@@ -32,23 +32,16 @@ export class LoginComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(10)]]
     });
-    this.loginService.logout();
-    this.returnUrl = this.route.snapshot.queryParams[''] || '/';
   }
 
 
 
   login(): void {
-    this.submitted = true;
-    if (this.loginForm.invalid) {
-      return;
-    }
-
     this.loading = true;
     this.loginService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
       .subscribe(
         data => {
+          console.log('ddsfsfgsfgfgsfgsfgfsg');
           this.router.navigate(['/home']);
         },
         error => {
@@ -60,7 +53,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
+
   registration(): void {
-    this.router.navigate([`/employee/${0}/add`]);
+    this.router.navigate(['registration']);
   }
 }

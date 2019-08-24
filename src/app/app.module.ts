@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './home/home.component';
 import {UserModule} from './user/user.module';
+import {LoginService} from './user/login/login.service';
 
 
 @NgModule({
