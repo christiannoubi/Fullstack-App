@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {Observable, of, throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 import {Employee} from './employee';
 import {catchError, map, tap} from 'rxjs/operators';
@@ -9,9 +9,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 @Injectable()
 
 export class EmployeeService {
-   // private employeeUrl = 'api/employees';
-   private employeeUrl = '/api/employee';
-
+   private employeeUrl = 'api/employee';
 
   constructor(private http: HttpClient) { }
 
@@ -24,12 +22,7 @@ export class EmployeeService {
   }
 
   getEmployee(id: string): Observable<Employee> {
-    if (id === '0') {
-      return of(this.initializeProduct());
-    }
     return this.http.get<Employee>(this.employeeUrl + '/' + id)
-   /* const url = `${this.employeeUrl}/${id}`;
-    return this.http.get<Employee>(url)*/
       .pipe(
         tap(data => console.log('getEmployee: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -82,17 +75,5 @@ export class EmployeeService {
     }
     console.error(err);
     return throwError(errorMessage);
-  }
-
-  private initializeProduct(): Employee {
-    // Return an initialized object
-    return {
-      id: 0,
-      firstName: null,
-      lastName: null,
-      username: null,
-      password: null,
-      email: null
-    };
   }
 }

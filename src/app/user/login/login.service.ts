@@ -1,19 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, tap} from 'rxjs/operators';
-import {Employee} from '../../employees/employee';
+import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
-import {User} from './user';
 
 
 @Injectable()
 export class LoginService {
 
-  private loginUrl = '/api/login';
-  public currentUser: Observable<Employee>;
-
-
+  private loginUrl = 'api/login';
   constructor(private http: HttpClient,
               private router: Router) {
   }

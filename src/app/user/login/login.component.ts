@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {LoginService} from './login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {first} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,6 @@ import {first} from 'rxjs/operators';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   pageTitle = 'Log In';
-
-  submitted = false;
   loading = false;
 
 
@@ -41,7 +39,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.f.username.value, this.f.password.value)
       .subscribe(
         data => {
-          console.log('ddsfsfgsfgfgsfgsfgfsg');
           this.router.navigate(['/home']);
         },
         error => {
